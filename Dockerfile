@@ -1,7 +1,5 @@
 FROM openjdk:17-jdk
 
-RUN apt-get update && apt-get install -y netcat
-
 WORKDIR /app
 
 # Копируем скомпилированный jar
