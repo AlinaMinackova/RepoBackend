@@ -3,6 +3,8 @@ package com.example.JenkinsCICDPipeline.controller;
 import com.example.JenkinsCICDPipeline.model.Users;
 import com.example.JenkinsCICDPipeline.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +26,13 @@ public class UserController {
     @PostMapping
     public Users createUser(@RequestBody Users user) {
         return userService.save(user);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteUser(String name){
+        userService.delete(name);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body("{\"message\": \"User deleted\"}");
     }
 }
